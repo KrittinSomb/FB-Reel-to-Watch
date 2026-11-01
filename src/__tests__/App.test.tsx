@@ -13,6 +13,12 @@ describe('App (Popup UI)', () => {
     expect(screen.getByText('FB Reel to Watch')).toBeInTheDocument();
   });
 
+  it('should render status badge with correct text', async () => {
+    render(<App />);
+    const badgeText = await screen.findByText('Monitoring Facebook Reels');
+    expect(badgeText).toBeInTheDocument();
+  });
+
   it('should render the subtitle', () => {
     render(<App />);
     expect(

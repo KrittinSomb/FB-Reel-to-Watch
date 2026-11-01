@@ -95,7 +95,7 @@ function App() {
             ${enabled ? 'bg-fb-green animate-pulse' : 'bg-fb-red'}
           `}
         />
-        {enabled ? 'Monitoring Facebook links' : 'Extension is paused'}
+        {enabled ? 'Monitoring Facebook Reels' : 'Extension is paused'}
       </div>
 
       {/* Footer */}

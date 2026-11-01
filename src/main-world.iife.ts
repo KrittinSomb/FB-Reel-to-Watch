@@ -3,8 +3,8 @@
  *
  * Runs directly in Facebook's MAIN JavaScript execution context at `document_start`.
  *
- * Intercepts any attempt to open Facebook Reels and ensures the user lands on
- * the classic Facebook Watch player instead of the Reel overlay.
+ * Strictly respects the `isExtensionActive()` flag. If disabled, does NOTHING
+ * and lets Facebook Reels work 100% naturally without redirection or interference.
  */
 
 // ─── URL Rewriting Logic ─────────────────────────────────────────────
@@ -36,29 +36,14 @@ export function rewriteReelHref(urlStr: string): string | null {
 }
 
 // ─── State Checker ───────────────────────────────────────────────────
-function isExtensionActive(): boolean {
-  if (typeof document === 'undefined') return true;
-  return document.documentElement.dataset.fbReelToWatch !== 'false';
+// MUST be explicitly "true" to be active. If "false" or not yet loaded, inactive.
+export function isExtensionActive(): boolean {
+  if (typeof document === 'undefined' || !document.documentElement) return false;
+  return document.documentElement.dataset.fbReelToWatch === 'true';
 }
 
-// ─── Layer 1: Initial Page Load (Direct URL) ─────────────────────────
-// If user enters facebook.com/reel/... directly in address bar,
-// redirect to /watch/?v= at document_start (0ms) before React mounts.
-(function checkInitialUrl() {
-  if (typeof window === 'undefined') return;
-  const path = window.location.pathname;
-  if (path.includes('/reel') || path.includes('/share/r/')) {
-    const watchUrl = rewriteReelHref(window.location.href);
-    if (watchUrl && watchUrl !== window.location.href) {
-      window.location.replace(watchUrl);
-    }
-  }
-})();
-
-// ─── Layer 2: Hook History API (pushState & replaceState) ─────────────
-// When Facebook's React Router tries to pushState to a Reel URL:
-// Instead of letting it mount the Reel modal overlay with a mismatched URL,
-// we immediately navigate to the real Watch player page!
+// ─── Hook History API (pushState & replaceState) ──────────────────────
+// Intercepts in-app SPA transitions only when active.
 (function hookHistory() {
   if (typeof history === 'undefined') return;
 
@@ -73,7 +58,6 @@ function isExtensionActive(): boolean {
     if (isExtensionActive() && url) {
       const rewritten = rewriteReelHref(url.toString());
       if (rewritten) {
-        // Facebook is attempting to open a Reel! Navigate to Watch player directly.
         window.location.assign(rewritten);
         return;
       }
@@ -97,12 +81,7 @@ function isExtensionActive(): boolean {
   };
 })();
 
-// ─── Layer 3: Link Mutation & Click Interception (Capture Phase) ──────
-// 1. On hover / mousedown: mutate DOM <a> href and React props so right-click,
-//    middle-click, and preview show Watch player URL.
-// 2. On click: STOP Facebook's Reel Modal handler from mounting the Reel overlay,
-//    and navigate directly to the Watch player.
-
+// ─── Link Mutation & Click Interception (Capture Phase) ──────────────
 function mutateAnchor(anchor: HTMLAnchorElement): string | null {
   const rawHref = anchor.getAttribute('href') || anchor.href;
   if (!rawHref) return null;
@@ -113,7 +92,6 @@ function mutateAnchor(anchor: HTMLAnchorElement): string | null {
   anchor.href = watchUrl;
   anchor.setAttribute('href', watchUrl);
 
-  // Update React Fiber props if accessible
   try {
     const propKey = Object.keys(anchor).find((key) => key.startsWith('__reactProps$'));
     if (propKey) {
@@ -133,6 +111,7 @@ function mutateAnchor(anchor: HTMLAnchorElement): string | null {
 
 function handleHoverOrPointer(e: Event): void {
   if (!isExtensionActive()) return;
+
   const target = e.target;
   if (!(target instanceof HTMLElement)) return;
   const anchor = target.closest('a');
@@ -154,19 +133,16 @@ function handleClick(e: MouseEvent): void {
   if (!watchUrl) return;
 
   // Standard left-click without modifier keys:
-  // PREVENT Facebook from mounting the Reel overlay modal!
   if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
 
-    // Navigate cleanly to the genuine Watch player
     window.location.assign(watchUrl);
   }
 }
 
 if (typeof document !== 'undefined') {
-  // Capture phase listeners
   document.addEventListener('mouseover', handleHoverOrPointer, true);
   document.addEventListener('pointerenter', handleHoverOrPointer, true);
   document.addEventListener('pointerdown', handleHoverOrPointer, true);

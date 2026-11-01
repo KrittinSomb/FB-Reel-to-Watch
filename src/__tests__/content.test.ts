@@ -1,5 +1,25 @@
-import { describe, it, expect } from 'vitest';
-import { rewriteReelHref } from '../main-world.iife';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { rewriteReelHref, isExtensionActive } from '../main-world.iife';
+
+describe('isExtensionActive', () => {
+  beforeEach(() => {
+    delete document.documentElement.dataset.fbReelToWatch;
+  });
+
+  it('should return false if dataset is undefined', () => {
+    expect(isExtensionActive()).toBe(false);
+  });
+
+  it('should return false if dataset is "false"', () => {
+    document.documentElement.dataset.fbReelToWatch = 'false';
+    expect(isExtensionActive()).toBe(false);
+  });
+
+  it('should return true ONLY if dataset is explicitly "true"', () => {
+    document.documentElement.dataset.fbReelToWatch = 'true';
+    expect(isExtensionActive()).toBe(true);
+  });
+});
 
 describe('rewriteReelHref', () => {
   it('should rewrite a standard reel URL to watch URL', () => {
