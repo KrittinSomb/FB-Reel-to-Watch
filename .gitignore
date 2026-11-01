@@ -29,6 +29,10 @@ coverage
 *.local
 .tsbuildinfo
 *.tsbuildinfo
+scratch/
+
+# Local raw captures / backups
+public/DemoImg/originals/
 
 # Editor & OS files
 .vscode/*
