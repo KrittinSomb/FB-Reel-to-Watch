@@ -13,6 +13,15 @@
 
 ---
 
+## 📸 ตัวอย่างการทำงาน / Preview
+
+| 🔴 Extension Inactive (โหมดปกติ) | 🟢 Extension Active (เปิดการทำงาน) |
+| :---: | :---: |
+| <img src="public/DemoImg/Store_Off_mosaic_1280x800.png" alt="Extension Inactive" width="100%" /> | <img src="public/DemoImg/Store_On_mosaic_1280x800.png" alt="Extension Active" width="100%" /> |
+| **Reel View (โหมดปกติ):** เปิดคลิปแนวตั้งตามเดิมเมื่อปิดสวิตช์ | **Classic Watch Player:** แปลงลิงก์อัตโนมัติ มีแถบกรอเวลาและปุ่มควบคุมครบ |
+
+---
+
 ### 🌐 Select Language / เลือกภาษา
 - [🇹🇭 ภาษาไทย](#-ภาษาไทย)
 - [🇬🇧 English](#-english)
