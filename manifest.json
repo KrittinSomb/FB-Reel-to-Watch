@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "FB Reel to Watch",
+  "version": "1.0.0",
+  "description": "Bypass Facebook Reels and redirect to the classic Watch player with seamless SPA navigation.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "public/icon-128.png"
+  },
+  "icons": {
+    "16": "public/icon-16.png",
+    "48": "public/icon-48.png",
+    "128": "public/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://facebook.com/*",
+        "https://www.facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": ["src/main-world.iife.ts"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://facebook.com/*",
+        "https://www.facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": ["src/content.iife.ts"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    }
+  ]
+}
