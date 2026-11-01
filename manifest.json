@@ -6,12 +6,12 @@
   "permissions": ["storage"],
   "action": {
     "default_popup": "index.html",
-    "default_icon": "public/icon-128.png"
+    "default_icon": "public/icons/icon-128.png"
   },
   "icons": {
-    "16": "public/icon-16.png",
-    "48": "public/icon-48.png",
-    "128": "public/icon-128.png"
+    "16": "public/icons/icon-16.png",
+    "48": "public/icons/icon-48.png",
+    "128": "public/icons/icon-128.png"
   },
   "content_scripts": [
     {
