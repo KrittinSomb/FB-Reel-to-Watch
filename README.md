@@ -3,6 +3,7 @@
 > **Bypass Facebook Reels automatically and redirect to the classic Facebook Watch player.**  
 > ส่วนขยายเบราว์เซอร์ที่จะเปลี่ยนการเปิด Facebook Reels ให้กลายเป็น Classic Watch Player อัตโนมัติ พร้อมฟังก์ชันควบคุมวิดีโอครบครัน
 
+[![Microsoft Edge Add-ons](https://img.shields.io/badge/Microsoft%20Edge-Get%20it%20on%20Edge%20Add--ons-0078D7?logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/fb-reel-to-watch/ppphbppfbckgioelkphjdickgaaogndk)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Vite](https://img.shields.io/badge/Vite-8.x-646CFF.svg?logo=vite)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-19.x-61DAFB.svg?logo=react)](https://react.dev/)
@@ -41,11 +42,16 @@
 
 ---
 
-## 📥 วิธีการติดตั้งใช้งาน (ง่ายที่สุดใน 10 วินาที)
+## 📥 วิธีการติดตั้งใช้งาน
 
-รองรับเบราว์เซอร์ตระกูล **Chromium** ทั้งหมด (Google Chrome, Microsoft Edge, Brave, Opera, Vivaldi, Arc ฯลฯ)
+### 🚀 วิธีที่ 1: ติดตั้งจาก Microsoft Edge Add-ons (แนะนำและง่ายที่สุดใน 1 คลิก)
+สำหรับผู้ใช้ **Microsoft Edge**: ผ่านการตรวจสอบและอนุมัติอย่างเป็นทางการแล้ว สามารถกดติดตั้งได้ทันที ไม่ต้องเปิด Developer Mode และรองรับการอัปเดตอัตโนมัติ
 
-### ⚡ วิธีที่ 1: ลากไฟล์วางได้เลย (ง่ายและเร็วที่สุด)
+👉 **[ดาวน์โหลดและติดตั้งจาก Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/fb-reel-to-watch/ppphbppfbckgioelkphjdickgaaogndk)**
+
+---
+
+### ⚡ วิธีที่ 2: ลากไฟล์วางได้เลย (สำหรับ Chrome, Brave, Opera, Vivaldi ฯลฯ)
 1. ดาวน์โหลดไฟล์ **`FB Reel to Watch.zip`** จากหน้า [Releases](https://github.com/KrittinSomb/FB-Reel-to-Watch/releases) หรือจาก Repository นี้
 2. ไปที่หน้า **จัดการส่วนขยาย (Manage Extensions)** ในเบราว์เซอร์ของคุณ:
    - **วิธีที่ 1 (ผ่านเมนูเบราว์เซอร์):** คลิกปุ่ม **จุด 3 จุด (⋮)** หรือ **ขีด 3 ขีด (☰)** ที่มุมบนขวาของเบราว์เซอร์ ➔ เลือก **"ส่วนขยาย" (Extensions)** ➔ เลือก **"จัดการส่วนขยาย" (Manage extensions)**
@@ -59,7 +65,7 @@
 
 ---
 
-### 📂 วิธีที่ 2: แตกไฟล์แบบปกติ (กรณีเบราว์เซอร์ไม่รองรับการลากวาง)
+### 📂 วิธีที่ 3: แตกไฟล์แบบปกติ (กรณีเบราว์เซอร์ไม่รองรับการลากวาง)
 1. คลิกขวาที่ไฟล์ `FB Reel to Watch.zip` แล้วเลือก **Extract All...** (แยกไฟล์ทั้งหมด)
 2. ไปที่หน้า **จัดการส่วนขยาย** (ตามข้อ 2 ด้านบน) แล้วเปิด **Developer mode**
 3. คลิกปุ่ม **Load unpacked** (โหลดส่วนขยายที่คลายการบีบอัดแล้ว) ที่มุมซ้ายบน
@@ -106,11 +112,16 @@ bun run build
 
 ---
 
-## 📥 Installation Guide (Quick & Easy in 10 Seconds)
+## 📥 Installation Guide
 
-Works with all **Chromium-based** browsers (Google Chrome, Microsoft Edge, Brave, Opera, Vivaldi, Arc, etc.)
+### 🚀 Method 1: Install from Microsoft Edge Add-ons (Recommended & Easiest)
+For **Microsoft Edge** users: Officially reviewed and approved! Install in 1-click with automatic updates and no Developer Mode needed.
 
-### ⚡ Method 1: Drag & Drop (Fastest & Recommended)
+👉 **[Get it on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/fb-reel-to-watch/ppphbppfbckgioelkphjdickgaaogndk)**
+
+---
+
+### ⚡ Method 2: Drag & Drop (Fastest for Chrome, Brave, Opera, Vivaldi, etc.)
 1. Download **`FB Reel to Watch.zip`** from the [Releases](https://github.com/KrittinSomb/FB-Reel-to-Watch/releases) section or from this repository.
 2. Open the **Manage Extensions** page in your browser:
    - **Option 1 (Browser Menu):** Click the **three dots (⋮)** or **hamburger menu (☰)** in the top-right corner ➔ select **"Extensions"** ➔ click **"Manage extensions"**
@@ -125,7 +136,7 @@ Works with all **Chromium-based** browsers (Google Chrome, Microsoft Edge, Brave
 
 ---
 
-### 📂 Method 2: Traditional Unpack (If Drag & Drop is unavailable)
+### 📂 Method 3: Traditional Unpack (If Drag & Drop is unavailable)
 1. Right-click `FB Reel to Watch.zip` and select **Extract All...**
 2. Navigate to the **Manage Extensions** page (as described above) and turn on **Developer mode**.
 3. Click the **Load unpacked** button (top-left).
